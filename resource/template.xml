@@ -1,0 +1,94 @@
+<Simulation>
+    <Property name="Epoch" value="1000000"/>
+    <Property name="Input" value="a+0-3"/>
+    <Property name="Output" value="output"/>
+    <Network>
+        <Switch name="1" capacity="1000">
+            <Prefix value="1____"/>
+        </Switch>
+    </Network>
+
+    <TaskHandler class="edu.usc.enl.dynamicmeasurement.algorithms.taskhandler.SingleTaskHandler">
+    </TaskHandler>
+    <TaskHandler
+            class="edu.usc.enl.dynamicmeasurement.algorithms.tasks.multitask.singleswitch.MultiTaskSingleSwitchPacketUser">
+        <Property name="UpdateInterval" value="5"/>
+        <Property name="ResourceControl"
+                  value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.multitask.singleswitch.resourceallocation.EqualAvgThresholdAlgorithm">
+            <Property name="ResourceChangeStep" value="0.05"/>
+            <Property name="LowThreshold" value="0.05"/>
+            <Property name="HighThreshold" value="0.05"/>
+            <Property name="Random" value="5234234234"/>
+        </Property>
+        <Property name="AccuracyAggregator"
+                  value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.multitask.aggregator.EWMAAccuracyAggregatorImpl">
+            <Property name="Alpha" value="0.8"/>
+        </Property>
+    </TaskHandler>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTaskEvent">
+        <Property name="task1" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.Task2">
+            <Property name="Filter" value="1_____"/>
+            <Property name="User" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.FlowHHHPacketUser">
+                <Property name="Algorithm"
+                          value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.singleswitch.SingleSwitch">
+                    <Property name="Threshold" value="401406.680"/>
+                    <Property name="Filter" value="1_____"/>
+                </Property>
+            </Property>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTaskEvent">
+        <Property name="task2" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.Task2">
+            <Property name="Filter" value="1_____"/>
+            <Property name="User" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.FlowHHHPacketUser">
+                <Property name="Algorithm"
+                          value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.multiswitch.MultiSwitch2">
+                    <Property name="Threshold" value="401406.680"/>
+                    <Property name="Filter" value="1_____"/>
+                </Property>
+            </Property>
+        </Property>
+    </Event>
+
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTaskEvent">
+        <Property name="task2" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.Task2">
+            <Property name="Filter" value="1_____"/>
+            <Property name="User"
+                      value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.sketch.SketchHHHPacketUser">
+                <Property name="Algorithm"
+                          value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.sketch.single.HierarchicalCountMinSketch">
+                    <Property name="Threshold" value="401406.680"/>
+                    <Property name="Filter" value="1_____"/>
+                </Property>
+            </Property>
+        </Property>
+    </Event>
+
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="filter1" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.PacketFilter">
+            <Property name="Filter" value="1010____"/>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="randomadd1"
+                  value="edu.usc.enl.dynamicmeasurement.algorithms.transform.RandomAdditionPacketUser">
+            <Property name="Filter" value="1010____"/>
+            <Property name="ChangeFraction" value="0.1"/>
+            <Property name="Random" value="832828383283"/>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="randommap1" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.RandomMappingPacketUser">
+            <Property name="Filter" value="1010____"/>
+            <Property name="ChangeFraction" value="0.1"/>
+            <Property name="Random" value="832828383283"/>
+            <Property name="ChangeStepNum" value="0.1"/>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="skew1" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.SkewPacketUser">
+            <Property name="Filter" value="1010____"/>
+            <Property name="Skew" value="0.6"/>
+        </Property>
+    </Event>
+</Simulation>

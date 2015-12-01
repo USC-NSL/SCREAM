@@ -1,0 +1,42 @@
+<Simulation>
+    <Property name="Epoch" value="1000000"/>
+    <Property name="Input" value="a+0-3"/>
+    <Property name="Output" value="output/128_hh_6_temp"/>
+    <Network>
+        <Switch name="1" capacity="128">
+            <Prefix value="________________________________"/>
+        </Switch>
+    </Network>
+
+    <TaskHandler class="edu.usc.enl.dynamicmeasurement.algorithms.taskhandler.SingleTaskHandler">
+    </TaskHandler>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTaskEvent">
+        <Property name="1" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.Task2">
+            <Property name="Filter" value="00110000000000__________________"/>
+            <Property name="User" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hh.sketch.SketchHHPacketUser">
+                <Property name="Algorithm"
+                          value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hh.sketch.single.HHHierarchicalCountMinSketch">
+                    <!--<Property name="Algorithm" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.groundtruth.HHHGroundTruth">-->
+                    <Property name="Threshold" value="401406.680"/>
+                    <Property name="Filter" value="00110000000000__________________"/>
+                    <Property name="WildcardNum" value="0"/>
+                </Property>
+            </Property>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="skew1" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.SkewPacketUser">
+            <Property name="Filter" value="00110000000000__________________"/>
+            <Property name="Skew" value="0.6"/>
+        </Property>
+    </Event>
+    <Event time="1" class="edu.usc.enl.dynamicmeasurement.model.event.RemoveTransformEvent">
+        <Property name="Id" value="skew1"/>
+    </Event>
+    <Event time="120" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="skew2" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.SkewPacketUser">
+            <Property name="Filter" value="00110000000000__________________"/>
+            <Property name="Skew" value="1.4"/>
+        </Property>
+    </Event>
+</Simulation>

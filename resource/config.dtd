@@ -1,0 +1,19 @@
+<!DOCTYPE Simulation [
+
+        <!ELEMENT Simulation (Property*,Network,TaskHandler,Event*)>
+        <!ELEMENT Network (Switch+)>
+        <!ELEMENT Switch (Prefix+)>
+        <!ELEMENT Prefix EMPTY>
+        <!ELEMENT TaskHandler (Property*)>
+        <!ELEMENT Event (Property*)>
+        <!ELEMENT Property (Property*)>
+
+        <!ATTLIST TaskHandler class CDATA #REQUIRED>
+        <!ATTLIST Event class CDATA #REQUIRED>
+        <!ATTLIST Event time CDATA #REQUIRED>
+        <!ATTLIST Proprty name CDATA #REQUIRED>
+        <!ATTLIST Property value CDATA #REQUIRED>
+        <!ATTLIST Switch name CDATA #REQUIRED>
+        <!ATTLIST Switch capacity CDATA #REQUIRED>
+        <!ATTLIST Prefix value CDATA #REQUIRED>
+        ]>

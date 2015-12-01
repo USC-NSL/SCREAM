@@ -1,0 +1,40 @@
+<Simulation>
+    <Property name="Epoch" value="1000000"/>
+    <Property name="Input" value="a+0-3"/>
+    <Property name="Output" value="output/test"/>
+    <Network>
+        <Switch name="1" capacity="1024">
+            <Prefix value="00______________________________"/>
+        </Switch>
+        <Switch name="2" capacity="1024">
+            <Prefix value="01______________________________"/>
+        </Switch>
+        <Switch name="3" capacity="1024">
+            <Prefix value="10______________________________"/>
+        </Switch>
+        <Switch name="4" capacity="1024">
+            <Prefix value="11______________________________"/>
+        </Switch>
+    </Network>
+
+    <TaskHandler class="edu.usc.enl.dynamicmeasurement.algorithms.taskhandler.SingleTaskHandler">
+    </TaskHandler>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTaskEvent">
+        <Property name="multitcam" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.Task2">
+            <Property name="Filter" value="________________________________"/>
+            <Property name="User" value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.FlowHHHPacketUser">
+                <Property name="Algorithm"
+                          value="edu.usc.enl.dynamicmeasurement.algorithms.tasks.hhh.flow.multiswitch.MultiSwitch2">
+                    <Property name="Threshold" value="401406.680"/>
+                    <Property name="Filter" value="________________________________"/>
+                </Property>
+            </Property>
+        </Property>
+    </Event>
+    <Event time="0" class="edu.usc.enl.dynamicmeasurement.model.event.AddTransformEvent">
+        <Property name="skew1" value="edu.usc.enl.dynamicmeasurement.algorithms.transform.SkewPacketUser">
+            <Property name="Filter" value="________________________________"/>
+            <Property name="Skew" value="1.4"/>
+        </Property>
+    </Event>
+</Simulation>
